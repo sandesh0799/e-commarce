@@ -18,8 +18,8 @@ mongoose
 
 const databaseSeeder = require("./databaseSeeder");
 const userRoute = require("./routes/User");
-// const productRoute = require("./routes/Product");
-// const orderRoute = require("./routes/Order");
+const productRoute = require("./routes/Product");
+const orderRoute = require("./routes/Order");
 
 app.use(express.json())
 
@@ -31,14 +31,11 @@ app.use("/api/seed", databaseSeeder);
 // //routes for users
 app.use("/api/users", userRoute);
 
-// //routes for products
-// app.use("/api/products", productRoute);
+//routes for products
+app.use("/api/products", productRoute);
 
-// //routes for orders
-// app.use("/api/orders", orderRoute);
-
-
-
+//routes for orders
+app.use("/api/orders", orderRoute);
 
 
 // paypal payment api for client key;

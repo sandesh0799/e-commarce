@@ -92,7 +92,7 @@ userRoute.put(
                 email: updatedUser.email,
                 isAdmin: updatedUser.isAdmin,
                 createdAt: updatedUser.createdAt,
-                token: generateToekn(updatedUser._id)
+                token: generateToken(updatedUser._id)
             });
 
         } else {
