@@ -17,7 +17,6 @@ orderRoute.post(
             totalPrice,
             price,
         } = req.body;
-        console.log(orderItems)
 
         if (orderItems && orderItems.length === 0) {
             res.status(400);
@@ -33,17 +32,6 @@ orderRoute.post(
                 price,
                 user: req.user._id,
             });
-
-            // const newOrder =  new UserOrder({
-            //   userId: '1',
-            //   customerId: '1',
-            //   productId: '652b2e458077fd5b243a06ad',
-            //   quantity: 1,
-            //   subtotal: 12 / 100,
-            //   total: 12 / 100,
-            //   payment_status: '3',
-            // });
-
             const createdOrder = await order.save();
             res.status(201).json(createdOrder);
         }
@@ -85,9 +73,9 @@ orderRoute.put(
                 id: req.body.id,
                 status: req.body.status,
                 update_time: req.body.create_time,
-                email_address: req.body.payer.email_address,
+                email_address: req.body.email_address,
             };
-            const updatedOrder = order.save();
+            const updatedOrder = await order.save();
 
             res.status(200).json(updatedOrder);
         } else {
