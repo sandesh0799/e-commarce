@@ -6,6 +6,7 @@ import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import About from './pages/About';
 import Checkout from './pages/Checkout';
+import PlaceOrder from './pages/PlaceOrder';
 function App() {
   const userInfo = localStorage.getItem("userInfo");
   return (
@@ -26,9 +27,9 @@ function App() {
             element={userInfo ? <Navigate to="/"></Navigate> : <Register />}
           ></Route>
           {/* <Route path="/order/:id" element={<OrderConfirmation />} />
-          <Route path="/order-history" element={<OrderHistory />} />
+          <Route path="/order-history" element={<OrderHistory />} /> */}
 
-          <Route exact path="/placeorder" element={<PlaceOrder />}></Route> */}
+          <Route exact path="/placeorder" element={<PlaceOrder />}></Route>
           <Route exact path="/checkout" element={<Checkout />}></Route>
         </Routes>
       </Router>
