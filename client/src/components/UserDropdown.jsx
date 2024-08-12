@@ -1,8 +1,8 @@
 import { Dropdown } from "flowbite-react";
-import {Link} from "react-router-dom"
-const UserDropdown=({ logoutHandler })=> {
+import { Link } from "react-router-dom"
+const UserDropdown = ({ logoutHandler }) => {
   return (
-    <Dropdown label="User" dismissOnClick={false}>
+    <Dropdown label="User" dismissOnClick={false} className="whitespace-nowrap dark:text-white">
       <Link to="/order-history">
         <Dropdown.Item>Order History</Dropdown.Item>
       </Link>

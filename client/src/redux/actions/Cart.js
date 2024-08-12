@@ -39,7 +39,7 @@ export const removeFromCartAction = (id) => (dispatch, getState) => {
         payload:id
     })
 
-    localStorage.setItem("cartItems",JSON.stringify(getState().cart.cartItems) )
+    localStorage.setItem("cartItems",JSON.stringify(getState()?.cart?.cartItems) )
 }
 
 

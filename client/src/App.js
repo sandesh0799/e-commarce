@@ -4,15 +4,16 @@ import ProductDeatil from './pages/ProductDeatil';
 import Home from './pages/Home';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
-import { useSelector } from 'react-redux';
+import About from './pages/About';
+import Checkout from './pages/Checkout';
 function App() {
-  const userLoginReducer = useSelector((state) => state.userLoginReducer)
-  const userInfo = localStorage.getItem("userInfo") ;
+  const userInfo = localStorage.getItem("userInfo");
   return (
     <>
       <Router>
         <Routes>
           <Route exact path="/" element={<Home />}></Route>
+          <Route exact path="/about" element={<About />}></Route>
           <Route exact path="/products/:id" element={<ProductDeatil />}></Route>
           <Route
             exact
@@ -27,8 +28,8 @@ function App() {
           {/* <Route path="/order/:id" element={<OrderConfirmation />} />
           <Route path="/order-history" element={<OrderHistory />} />
 
-          <Route exact path="/checkout" element={<Checkout />}></Route>
           <Route exact path="/placeorder" element={<PlaceOrder />}></Route> */}
+          <Route exact path="/checkout" element={<Checkout />}></Route>
         </Routes>
       </Router>
     </>

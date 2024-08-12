@@ -11,7 +11,7 @@ import {
 
 import axios from 'axios'
 
-export const userLoginAction = (email, password) => async (dispatch)=>{
+export const userLoginAction = (email, password) => async (dispatch) => {
     try {
         dispatch({ type: USER_LOGIN_REQ })
         const config = {
@@ -29,7 +29,7 @@ export const userLoginAction = (email, password) => async (dispatch)=>{
         dispatch({
             type: USER_LOGIN_REQ_FAIL,
             payload: error.response.data.message
-       })
+        })
     }
 }
 
@@ -61,7 +61,7 @@ export const userRegisterAction = (name, email, password) => async (dispatch) =>
         localStorage.setItem("userInfo", JSON.stringify(data))
 
 
-     } catch (error) {
+    } catch (error) {
         dispatch({
             type: USER_REGISTER_REQ_FAIL,
             payload: error.response.data.message
