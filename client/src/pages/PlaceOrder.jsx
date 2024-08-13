@@ -1,8 +1,10 @@
-import React ,{useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import Layout from '../layout/Layout'
 import { useSelector } from 'react-redux'
 import CartItem from '../components/CartItem';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import axios from 'axios';
+import { BASE_URL } from '../redux/constants/BASE_URL';
 const PlaceOrder = () => {
     const cart = useSelector((state) => state.cartReducer);
     const { cartItems, shippingAddress } = cart;
@@ -23,6 +25,15 @@ const PlaceOrder = () => {
     const [city, setCity] = useState(shippingAddress.city);
     const [postalCode, setpostalCode] = useState(shippingAddress.postalCode);
     const [country, setCountry] = useState(shippingAddress.country);
+    const [clientId, setClientId] = useState(null)
+    useEffect(() => {
+
+    })
+    const getPaypalClientID = async () => {
+        const response = await (axios.get(`${BASE_URL}/api/config/paypal`))
+        const fetchClientId = response.data;
+        setClientId(fetchClientId)
+    }
     return (
         <Layout>
             <section className="text-gray-600 body-font overflow-hidden">
@@ -60,23 +71,27 @@ const PlaceOrder = () => {
                             </h2>
                             <div className="relative mb-4">
                                 <label htmlFor="address" className="leading-7 text-sm text-gray-600">Address</label>
-                                <input type="text" id="address" name="address"  value={address} onChange={(e) => setAddress(e.target.value)} className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
+                                <input type="text" id="address" name="address" value={address} onChange={(e) => setAddress(e.target.value)} className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                             </div>
                             <div className="relative mb-4">
                                 <label htmlFor="city" className="leading-7 text-sm text-gray-600">City</label>
-                                <input type="text" id="city" name="city" value={city} onChange={(e) => setCity(e.target.value)} className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+                                <input type="text" id="city" name="city" value={city} onChange={(e) => setCity(e.target.value)} className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                             </div>
                             <div className="relative mb-4">
                                 <label htmlFor="country" className="leading-7 text-sm text-gray-600">Country</label>
-                                <input type="text" id="country" name="country" value={country} onChange={(e) => setCountry(e.target.value)} className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+                                <input type="text" id="country" name="country" value={country} onChange={(e) => setCountry(e.target.value)} className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                             </div>
                             <div className="relative mb-4">
                                 <label htmlFor="postalCode" className="leading-7 text-sm text-gray-600">Postal Code</label>
-                                <input type="text" id="postalCode" name="postalCode" onChange={(e) => setpostalCode(e.target.value)} className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+                                <input type="text" id="postalCode" name="postalCode" onChange={(e) => setpostalCode(e.target.value)} className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                             </div>
-                            <PayPalScriptProvider options={{ clientId: "test" }}>
-                                <PayPalButtons  />
-                            </PayPalScriptProvider>
+                            {
+                                clientId && (
+                                    <PayPalScriptProvider options={{ clientId: clientId }}>
+                                        <PayPalButtons />
+                                    </PayPalScriptProvider>
+                                )
+                            }
                         </div>
                     </div>
                 </div>

@@ -20,7 +20,7 @@ const Products = () => {
                         <div className="flex flex-wrap -m-4">
                             {
                                 products && products.map((product) => {
-                                    return <div className="p-4 lg:w-1/4 md:w-1/3 sm:w-1/1" key={product.id}>
+                                    return <div className="p-4 lg:w-1/4 md:w-1/3 sm:w-1/1" key={product._id}>
                                         <div className="bg-white">
                                             <div className="max-w-2xl px-4 py-4 sm:px-6 sm:py-1 lg:max-w-7xl lg:px-8">
 
