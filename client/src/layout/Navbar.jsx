@@ -5,7 +5,7 @@ import { userLogoutAction } from "../redux/actions/User";
 
 import Checkout from "../pages/Checkout";
 import { useRef, useState } from "react";
-
+import '../assest/Navbar.css'
 const Navbar = () => {
   const userInfo = localStorage.getItem("userInfo");
   const dispatch = useDispatch();

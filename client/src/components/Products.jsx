@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 const Products = () => {
     const dispatch = useDispatch()
     const productListReducer = useSelector((state) => state.productListReducer);
-    const { loading, error, products = [], page, totalPages } = productListReducer
+    const { loading, error, products = []} = productListReducer
     
     useEffect(() => {
         dispatch(productListAction)
@@ -16,7 +16,7 @@ const Products = () => {
             {loading ? (<h1>loading...</h1>) : error ? (<h1>{error}</h1>) : (
 
                 <section className="text-gray-600 body-font">
-                    <div className="container px-1 py-1 mx-auto">
+                    <div className="container px-3 py-3 mx-auto">
                         <div className="flex flex-wrap -m-4">
                             {
                                 products && products.map((product) => {
@@ -29,7 +29,7 @@ const Products = () => {
                                                         <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
                                                             <img src={product.image} alt="Front of men&#039;s Basic Tee in black." className="h-full w-full object-cover object-center lg:h-full lg:w-full" />
                                                         </div>
-                                                        <div className="mt-4 flex justify-between">
+                                                        <div className="mt-4 p-3 flex justify-between">
                                                             <div>
                                                                 <h3 className="text-sm text-gray-700">
                                                                     <Link to={`products/${product._id}`}>
