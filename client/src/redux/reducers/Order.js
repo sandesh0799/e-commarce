@@ -35,7 +35,7 @@ export const orderReducer = (state = { order: {} }, action) => {
             return {}
         default:
             return state;
-
+        
     }
 }
 
@@ -72,7 +72,7 @@ export const orderPaymentReducer = (state = {}, action) => {
 }
 
 
-export const orderListReducer = (state = { orders: [] }, action) => {
+export const orderListReducer = (state = {orders:[]}, action) => {
     switch (action.type) {
         case ORDER_LIST_REQ:
             return { loading: true };
