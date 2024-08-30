@@ -12,8 +12,7 @@ import { OrderHistory } from './pages/OrderHistory';
 import { useSelector } from 'react-redux';
 
 function App() {
-  const userLoginReducer = useSelector((state) => state.userLoginReducer);
-  const { userInfo } = userLoginReducer;
+  const userInfo = localStorage.getItem("userInfo");
   return (
     <>
       <Router>
