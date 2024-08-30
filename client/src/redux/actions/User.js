@@ -23,7 +23,6 @@ export const userLoginAction = (email, password) => async (dispatch) => {
 
         dispatch({ type: USER_LOGIN_REQ_SUCCESS, payload: data });
         localStorage.setItem("userInfo", JSON.stringify(data))
-        if (data) document.location.href = "/"
 
     } catch (error) {
         dispatch({
