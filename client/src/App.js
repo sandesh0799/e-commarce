@@ -9,8 +9,11 @@ import Checkout from './pages/Checkout';
 import PlaceOrder from './pages/PlaceOrder';
 import OrderConfirmation from './pages/OrderConfirm';
 import { OrderHistory } from './pages/OrderHistory';
+import { useSelector } from 'react-redux';
+
 function App() {
-  const userInfo = localStorage.getItem("userInfo");
+  const userLoginReducer = useSelector((state) => state.userLoginReducer);
+  const { userInfo } = userLoginReducer;
   return (
     <>
       <Router>
